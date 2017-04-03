@@ -1,8 +1,9 @@
 //U.I.
 
-var first = function(arguement) {
-  document.getElementById("trns-form").reset();
-  
+var formatSent = function(rawSent) {
+
+  var finalString = rawSent.replace(/[\W+\d+]/g, "");
+  return finalString;
 
 };
 
@@ -13,7 +14,7 @@ $(document).ready(function() {
   $("#trns-form").submit(function(event) {
     event.preventDefault();
     var formSent = $("#userSent").val();
-    var ciphRes = first(formSent);
+    var ciphRes = formatSent(formSent);
 
     $("#response").val(ciphRes);
   });
