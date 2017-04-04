@@ -1,10 +1,11 @@
 //B.L.
-var sentObj = function(sentOne, sentTwo, stringLength, cols, rows) {
+var sentObj = function(sentOne, sentTwo, stringLength, rawSide, cols, rows) {
   this.origSent = sentOne;
   this.finalSent = sentTwo;
   this.sentLength = stringLength;
+  this.side = rawSide;
   this.numOfCol = cols;
-  this.numOfRows = rows;
+  this.numOfRow = rows;
 }
 
 var formatSent = function(rawSent) {
@@ -16,6 +17,26 @@ var numOfChar = function(letters) {
   return letters.length;
 }
 
+var sqRt = function(extent) {
+  return Math.sqrt(extent);
+}
+
+var colQuant = function(sideOfSquare) {
+  return Math.round(sideOfSquare);
+}
+
+var rowQuant = function(sideOfSquare) {
+  return Math.ceil(sideOfSquare);
+}
+
+var filter = function(columns, rows, txt) {
+  for(var i = 0; i <= columns ; i++ ) {
+    var cipher= [];
+    var snglChar = txt.slice(i, (i + 1));
+    cipher.push(snglChar);
+    return cipher[0];
+  };
+}
 
 //U.I.
 
@@ -31,7 +52,14 @@ $(document).ready(function() {
 
     newsentObj.sentLength = numOfChar(newsentObj.finalSent);
 
+    newsentObj.side = sqRt(newsentObj.sentLength);
 
+    newsentObj.numOfCol = colQuant(newsentObj.side);
+
+    newsentObj.numOfRow = rowQuant(newsentObj.side);
+
+    count = filter(newsentObj.numOfCol, newsentObj.numOfRow, newsentObj.finalSent);
+    console.log(count);
 
     $("#response").val(count);
   });
