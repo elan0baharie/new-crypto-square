@@ -29,12 +29,13 @@ var rowQuant = function(sideOfSquare) {
   return Math.ceil(sideOfSquare);
 }
 
-var filter = function(columns, rows, txt) {
-  for(var i = 0; i <= columns ; i++ ) {
-    var cipher= [];
-    var snglChar = txt.slice(i, (i + 1));
-    cipher.push(snglChar);
-    return cipher[0];
+var cipher= [];
+
+
+var filter = function(columns, rows, txt, length) {
+  for(var i = 0; i < rows ; i++ ) {
+    for(var j = i; j < length ; j+= columns) {var snglChar = txt.slice(j, (j + 1));
+    cipher.push(snglChar);}
   };
 }
 
@@ -58,10 +59,10 @@ $(document).ready(function() {
 
     newsentObj.numOfRow = rowQuant(newsentObj.side);
 
-    count = filter(newsentObj.numOfCol, newsentObj.numOfRow, newsentObj.finalSent);
-    console.log(count);
+    filter(newsentObj.numOfCol, newsentObj.numOfRow, newsentObj.finalSent, newsentObj.sentLength);
 
-    $("#response").val(count);
+
+    $("#response").val(cipher);
   });
 
 });// Doc Ready
