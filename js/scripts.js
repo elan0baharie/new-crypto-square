@@ -32,7 +32,7 @@ var rowQuant = function(sideOfSquare) {
 var cipher= [];
 
 
-var filter = function(columns, rows, txt, length) {
+sentObj.prototype.filter = function(columns, rows, txt, length) {
   for(var i = 0; i < rows ; i++ ) {
     for(var j = i; j < length ; j+= columns) {var snglChar = txt.slice(j, (j + 1));
     cipher.push(snglChar);}
@@ -59,7 +59,7 @@ $(document).ready(function() {
 
     newsentObj.numOfRow = rowQuant(newsentObj.side);
 
-    filter(newsentObj.numOfCol, newsentObj.numOfRow, newsentObj.finalSent, newsentObj.sentLength);
+    newsentObj.filter(newsentObj.numOfCol, newsentObj.numOfRow, newsentObj.finalSent, newsentObj.sentLength);
 
 
     $("#response").val(cipher);
